@@ -1,6 +1,8 @@
 package com.example.eni_parking.bo;
 
-public class Manager {
+import java.io.Serializable;
+
+public class Manager implements Serializable {
 
     private int id;
     private String firstname;
