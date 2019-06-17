@@ -14,10 +14,29 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createPeople =
-                "CREATE TABLE peoples (id INTEGER PRIMARY KEY AUTOINCREMENT, first_name TEXT, last_name TEXT)";
+        String createAgency =
+                "CREATE TABLE agency (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, phone TEXT, address TEXT)";
+        sqLiteDatabase.execSQL(createAgency);
 
-        sqLiteDatabase.execSQL(createPeople);
+        String createCar =
+                "CREATE TABLE car (id INTEGER PRIMARY KEY AUTOINCREMENT, picture TEXT, registrationNumber TEXT, price INTEGER, isBooked INTEGER)";
+        sqLiteDatabase.execSQL(createCar);
+
+        String createCarType =
+                "CREATE TABLE carType(id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT)";
+        sqLiteDatabase.execSQL(createCarType);
+
+        String createCustomer =
+                "CREATE TABLE customer(id INTEGER PRIMARY KEY AUTOINCREMENT, firstname TEXT, lastname TEXT)";
+        sqLiteDatabase.execSQL(createCustomer);
+
+        String createManager =
+                "CREATE TABLE manager(id INTEGER PRIMARY KEY AUTOINCREMENT, firstname TEXT, lastname TEXT, phone TEXT, agencyID INTEGER)";
+        sqLiteDatabase.execSQL(createManager);
+
+        String createRental =
+                "CREATE TABLE rental(id INTEGER PRIMARY KEY AUTOINCREMENT, customerID INTEGER, carID INTEGER, dateBegin TEXT, dateEnd TEXT, pictureBefore TEXT, pictureAfter TEXT)";
+        sqLiteDatabase.execSQL(createRental);
     }
 
     @Override
