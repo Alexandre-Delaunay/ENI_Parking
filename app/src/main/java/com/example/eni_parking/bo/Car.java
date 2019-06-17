@@ -82,4 +82,17 @@ public class Car {
     public void setIdCarType(List<Integer> idCarType) {
         this.idCarType = idCarType;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", picture='" + picture + '\'' +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", price=" + price +
+                ", isBooked=" + isBooked +
+                ", idCarType=" + idCarType +
+                ", carType=" + carType +
+                '}';
+    }
 }
