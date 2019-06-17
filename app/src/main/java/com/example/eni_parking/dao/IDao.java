@@ -1,14 +1,15 @@
 package com.example.eni_parking.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
-interface DAO<T> {
+public interface IDao<T extends Serializable> {
     /**
      * Get one element by Id
      * @param id
      * @return
      */
-    public T getById(int id);
+    public T getById(final int id);
 
     /**
      * Get all elements
@@ -21,19 +22,19 @@ interface DAO<T> {
      * @param t
      * @return
      */
-    public int update(T t);
+    public int update(final T t);
 
     /**
      * Insert one element
      * @param t
      * @return
      */
-    public int insert(T t);
+    public int insert(final T t);
 
     /**
      * Delete one element
      * @param t
      * @return
      */
-    public int delete (T t);
+    public int delete (final T t);
 }
