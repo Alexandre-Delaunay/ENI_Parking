@@ -25,7 +25,7 @@ public class AgencyDao implements IDao<Agency> {
 
         Cursor cursor = db.query(
                 "agency",
-                new String[]{"id", "type"},
+                new String[]{"id", "name", "phone", "address"},
                 "id=?",
                 new String[]{String.valueOf(id)},
                 null, null, null);
@@ -44,7 +44,7 @@ public class AgencyDao implements IDao<Agency> {
     public List getList() {
         Cursor cursor = db.query(
                 "agency",
-                new String[]{"id", "type"},
+                new String[]{"id", "name", "phone", "address"},
                 null,
                 null,
                 null, null, null);
