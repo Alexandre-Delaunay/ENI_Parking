@@ -14,7 +14,7 @@ import com.example.eni_parking.dao.CustomerDao;
 import com.example.eni_parking.dao.ManagerDao;
 import com.example.eni_parking.dao.RentalDao;
 
-@Database(entities = {Agency.class, Car.class, Customer.class, Manager.class , Rental.class}, version = 1)
+@Database(entities = {Agency.class, Car.class, Customer.class, Manager.class , Rental.class}, version = 1, exportSchema = false)
 public abstract class AndroidVoitureDatabase extends RoomDatabase {
     public abstract AgencyDao agencyDao();
 

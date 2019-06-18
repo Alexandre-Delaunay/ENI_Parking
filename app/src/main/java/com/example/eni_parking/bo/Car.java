@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "Cars")
 public class Car {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
 
@@ -33,18 +33,6 @@ public class Car {
     )
     private int agency_id;
 
-    public Car(){
-
-    }
-
-    public Car(int id, String picture, String registrationNumberk, double price, int isBooked, CarType carType) {
-        this.id = id;
-        this.picture = picture;
-        this.registrationNumber = registrationNumberk;
-        this.price = price;
-        this.isBooked = isBooked;
-    }
-
     public int getId() {
         return id;
     }
@@ -61,12 +49,12 @@ public class Car {
         this.picture = picture;
     }
 
-    public String getRegistrationNumberk() {
+    public String getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public void setRegistrationNumberk(String registrationNumberk) {
-        this.registrationNumber = registrationNumberk;
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
     public double getPrice() {

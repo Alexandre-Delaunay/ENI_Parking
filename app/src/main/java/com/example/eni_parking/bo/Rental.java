@@ -1,14 +1,16 @@
 package com.example.eni_parking.bo;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity(tableName = "rental")
-public class Rental implements Serializable {
+public class Rental {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -25,31 +27,21 @@ public class Rental implements Serializable {
             deferred = false,
             childColumns = "car_id"
     )
+
+    @ColumnInfo(name="car_id")
     private int car_id;
-    private Date dateBegin;
-    private Date dateEnd;
+
+    @ColumnInfo(name="date_begin")
+    private String dateBegin;
+
+    @ColumnInfo(name="date_end")
+    private String dateEnd;
+
+    @ColumnInfo(name="picture_before")
     private String pictureBefore;
+
+    @ColumnInfo(name="picture_after")
     private String pictureAfter;
-
-    public Rental() {
-    }
-
-    public Rental(int customer_id, int car_id, Date dateBegin, String pictureBefore) {
-        this.setCustomer_id(customer_id);
-        this.setCar_id(car_id);
-        this.setDateBegin(dateBegin);
-        this.setPictureBefore(pictureBefore);
-    }
-
-    public Rental(int id, int customer_id, int car_id, Date dateBegin, Date dateEnd, String pictureBefore, String pictureAfter) {
-        this.setId(id);
-        this.setCustomer_id(customer_id);
-        this.setCar_id(car_id);
-        this.setDateBegin(dateBegin);
-        this.setDateEnd(dateEnd);
-        this.setPictureBefore(pictureBefore);
-        this.setPictureAfter(pictureAfter);
-    }
 
     public int getId() {
         return id;
@@ -75,19 +67,19 @@ public class Rental implements Serializable {
         this.car_id = car_id;
     }
 
-    public Date getDateBegin() {
+    public String getDateBegin() {
         return dateBegin;
     }
 
-    public void setDateBegin(Date dateBegin) {
+    public void setDateBegin(String dateBegin) {
         this.dateBegin = dateBegin;
     }
 
-    public Date getDateEnd() {
+    public String getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Date dateEnd) {
+    public void setDateEnd(String dateEnd) {
         this.dateEnd = dateEnd;
     }
 
