@@ -4,14 +4,14 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "CarTypes")
+//@Entity(tableName = "CarTypes")
 public class CarType {
 
-    @PrimaryKey
-    @ColumnInfo(name = "id")
+    //@PrimaryKey
+    //@ColumnInfo(name = "id")
     private int id;
 
-    @ColumnInfo(name = "type")
+    //@ColumnInfo(name = "type")
     private String type;
 
     public CarType(){

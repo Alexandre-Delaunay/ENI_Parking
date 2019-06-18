@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Dao
-interface CarDao {
+public interface CarDao {
     @Insert(onConflict= OnConflictStrategy.REPLACE)
     public void insertCar(Car car);
 

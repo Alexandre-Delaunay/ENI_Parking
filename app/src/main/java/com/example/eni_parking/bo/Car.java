@@ -2,6 +2,7 @@ package com.example.eni_parking.bo;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 
@@ -23,6 +24,14 @@ public class Car {
 
     @ColumnInfo(name = "isBooked")
     private int isBooked;
+
+    @ForeignKey(
+            entity = Agency.class,
+            parentColumns = "id",
+            deferred = false,
+            childColumns = "agency_id"
+    )
+    private int agency_id;
 
     public Car(){
 
@@ -76,6 +85,14 @@ public class Car {
         isBooked = booked;
     }
 
+    public int getAgency_id() {
+        return agency_id;
+    }
+
+    public void setAgency_id(int agency_id) {
+        this.agency_id = agency_id;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -84,6 +101,7 @@ public class Car {
                 ", registrationNumber='" + registrationNumber + '\'' +
                 ", price=" + price +
                 ", isBooked=" + isBooked +
+                ", agency_id=" + agency_id +
                 '}';
     }
 }
