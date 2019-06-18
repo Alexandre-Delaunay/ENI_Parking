@@ -1,6 +1,8 @@
 package com.example.eni_parking.bo;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 
     private int id;
     private String firstname;
