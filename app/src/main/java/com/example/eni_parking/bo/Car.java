@@ -1,19 +1,29 @@
 package com.example.eni_parking.bo;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.List;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
+@Entity(tableName = "Cars")
 public class Car implements Serializable {
 
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     private int id;
-    private String picture;
-    private String registrationNumber;
-    private double price;
-    private int isBooked;
 
-    private List<Integer> idCarType;
-    private CarType carType;
+    @ColumnInfo(name = "picture")
+    private String picture;
+
+    @ColumnInfo(name = "registrationNumber")
+    private String registrationNumber;
+
+    @ColumnInfo(name = "price")
+    private double price;
+
+    @ColumnInfo(name = "isBooked")
+    private int isBooked;
 
     public Car(){
 
@@ -25,7 +35,6 @@ public class Car implements Serializable {
         this.registrationNumber = registrationNumberk;
         this.price = price;
         this.isBooked = isBooked;
-        this.carType = carType;
     }
 
     public int getId() {
@@ -68,22 +77,6 @@ public class Car implements Serializable {
         isBooked = booked;
     }
 
-    public CarType getCarType() {
-        return carType;
-    }
-
-    public void setCarType(CarType carType) {
-        this.carType = carType;
-    }
-
-    public List<Integer> getIdCarType() {
-        return idCarType;
-    }
-
-    public void setIdCarType(List<Integer> idCarType) {
-        this.idCarType = idCarType;
-    }
-
     @Override
     public String toString() {
         return "Car{" +
@@ -92,8 +85,6 @@ public class Car implements Serializable {
                 ", registrationNumber='" + registrationNumber + '\'' +
                 ", price=" + price +
                 ", isBooked=" + isBooked +
-                ", idCarType=" + idCarType +
-                ", carType=" + carType +
                 '}';
     }
 }
