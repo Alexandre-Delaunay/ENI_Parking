@@ -4,7 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.eni_parking.AppDatabase;
 import com.example.eni_parking.R;
+import com.example.eni_parking.bo.Car;
+
+import java.util.List;
 
 public class Search extends AppCompatActivity {
 
@@ -19,7 +23,7 @@ public class Search extends AppCompatActivity {
             public void onClick(View view) {
 
                 //TODO: get list by filter
-
+                 //List<Car> AppDatabase.getAppDatabase(this).carDao().
             }
         });
     }
