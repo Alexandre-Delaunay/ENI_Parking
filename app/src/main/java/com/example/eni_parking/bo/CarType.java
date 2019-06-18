@@ -1,11 +1,11 @@
 package com.example.eni_parking.bo;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.io.Serializable;
-
-public class CarType implements Serializable {
+@Entity(tableName = "CarTypes")
+public class CarType {
 
     @PrimaryKey
     @ColumnInfo(name = "id")

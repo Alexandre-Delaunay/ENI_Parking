@@ -4,10 +4,9 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.io.Serializable;
 
 @Entity(tableName = "Cars")
-public class Car implements Serializable {
+public class Car {
 
     @PrimaryKey
     @ColumnInfo(name = "id")

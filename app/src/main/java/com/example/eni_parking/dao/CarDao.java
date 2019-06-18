@@ -1,10 +1,31 @@
 package com.example.eni_parking.dao;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
+
+import com.example.eni_parking.bo.Car;
+
+import java.util.List;
 
 
 @Dao
 interface CarDao {
+    @Insert(onConflict= OnConflictStrategy.REPLACE)
+    public void insertCar(Car car);
 
+    @Update
+    public void updateCar(Car car);
 
+    @Delete
+    public void deleteCar(Car car);
+
+    @Query("SELECT * FROM Cars")
+    public Car[] loadAllCar();
+
+    @Query("SELECT * FROM cars WHERE id = :id")
+    public List<Car> findCarWithId(Integer id);
 }
