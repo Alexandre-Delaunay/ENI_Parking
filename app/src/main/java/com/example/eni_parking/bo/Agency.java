@@ -1,6 +1,9 @@
 package com.example.eni_parking.bo;
 
-public class Agency {
+import java.io.Serializable;
+
+public class Agency implements Serializable {
+
     private int id;
     private String name;
     private String phone;
@@ -35,11 +38,11 @@ public class Agency {
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String get_name() {
+    public String getName() {
         return name;
     }
 
@@ -47,7 +50,7 @@ public class Agency {
         this.name = name;
     }
 
-    public String get_phone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -55,7 +58,7 @@ public class Agency {
         this.phone = phone;
     }
 
-    public String get_address() {
+    public String getAddress() {
         return address;
     }
 
