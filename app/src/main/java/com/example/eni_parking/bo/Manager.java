@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "customer")
+@Entity(tableName = "manager")
 public class Manager {
 
     @PrimaryKey
