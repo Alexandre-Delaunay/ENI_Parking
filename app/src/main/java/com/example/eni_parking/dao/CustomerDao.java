@@ -1,5 +1,6 @@
 package com.example.eni_parking.dao;
 
+import android.arch.persistence.room.Entity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
