@@ -1,15 +1,16 @@
 package com.example.eni_parking.bo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Car {
+public class Car implements Serializable {
 
     private int id;
     private String picture;
     private String registrationNumber;
-    private BigDecimal price;
-    private boolean isBooked;
+    private double price;
+    private int isBooked;
 
     private List<Integer> idCarType;
     private CarType carType;
@@ -18,7 +19,7 @@ public class Car {
 
     }
 
-    public Car(int id, String picture, String registrationNumberk, BigDecimal price, boolean isBooked, CarType carType) {
+    public Car(int id, String picture, String registrationNumberk, double price, int isBooked, CarType carType) {
         this.id = id;
         this.picture = picture;
         this.registrationNumber = registrationNumberk;
@@ -51,19 +52,19 @@ public class Car {
         this.registrationNumber = registrationNumberk;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public boolean isBooked() {
+    public int getIsBooked() {
         return isBooked;
     }
 
-    public void setBooked(boolean booked) {
+    public void setIsBooked(int booked) {
         isBooked = booked;
     }
 
