@@ -1,11 +1,30 @@
 package com.example.eni_parking.bo;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Rental {
+@Entity(tableName = "rental")
+public class Rental implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @ForeignKey(
+            entity = Customer.class,
+            parentColumns = "id",
+            deferred = false,
+            childColumns = "customer_id"
+    )
     private int customer_id;
+    @ForeignKey(
+            entity = Car.class,
+            parentColumns = "id",
+            deferred = false,
+            childColumns = "car_id"
+    )
     private int car_id;
     private Date dateBegin;
     private Date dateEnd;
@@ -36,7 +55,7 @@ public class Rental {
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -90,7 +109,7 @@ public class Rental {
 
     @Override
     public String toString() {
-        return "Rental{" +
+        return "RentalDao{" +
                 "id=" + id +
                 ", customer_id=" + customer_id +
                 ", car_id=" + car_id +
