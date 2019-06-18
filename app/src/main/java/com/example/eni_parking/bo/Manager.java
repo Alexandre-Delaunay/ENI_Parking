@@ -5,12 +5,11 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.io.Serializable;
 
 @Entity(tableName = "manager")
 public class Manager {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name="firstname")
@@ -28,17 +27,6 @@ public class Manager {
             childColumns = "agencyID"
     )
     private int agencyID;
-
-    public Manager() {
-    }
-
-    public Manager(int id, String firstname, String lastname, String phone, int agencyID) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.agencyID = agencyID;
-    }
 
     public int getId() {
         return id;

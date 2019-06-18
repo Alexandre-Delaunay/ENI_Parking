@@ -2,13 +2,14 @@ package com.example.eni_parking.bo;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 
 @Entity(tableName = "Cars")
 public class Car {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
 
@@ -24,17 +25,13 @@ public class Car {
     @ColumnInfo(name = "isBooked")
     private int isBooked;
 
-    public Car(){
-
-    }
-
-    public Car(int id, String picture, String registrationNumberk, double price, int isBooked, CarType carType) {
-        this.id = id;
-        this.picture = picture;
-        this.registrationNumber = registrationNumberk;
-        this.price = price;
-        this.isBooked = isBooked;
-    }
+    @ForeignKey(
+            entity = Agency.class,
+            parentColumns = "id",
+            deferred = false,
+            childColumns = "agency_id"
+    )
+    private int agency_id;
 
     public int getId() {
         return id;
@@ -52,12 +49,12 @@ public class Car {
         this.picture = picture;
     }
 
-    public String getRegistrationNumberk() {
+    public String getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public void setRegistrationNumberk(String registrationNumberk) {
-        this.registrationNumber = registrationNumberk;
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
     public double getPrice() {
@@ -76,6 +73,14 @@ public class Car {
         isBooked = booked;
     }
 
+    public int getAgency_id() {
+        return agency_id;
+    }
+
+    public void setAgency_id(int agency_id) {
+        this.agency_id = agency_id;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -84,6 +89,7 @@ public class Car {
                 ", registrationNumber='" + registrationNumber + '\'' +
                 ", price=" + price +
                 ", isBooked=" + isBooked +
+                ", agency_id=" + agency_id +
                 '}';
     }
 }

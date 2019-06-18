@@ -19,11 +19,11 @@ public interface RentalDao {
     public List<Rental> getAllRental();
 
     @Update
-    public int update(Rental rental);
+    public void update(Rental rental);
 
     @Insert
-    public int insert(Rental rental);
+    public void insert(Rental rental);
 
     @Delete
-    public int delete(Rental rental);
+    public void delete(Rental rental);
 }

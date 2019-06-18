@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity(tableName = "customer")
 public class Customer {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
     private int id;
 
@@ -18,15 +18,6 @@ public class Customer {
 
     @ColumnInfo(name="lastname")
     private String lastname;
-
-    public Customer() {
-    }
-
-    public Customer(int id, String firstname, String lastname) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
 
     public int getId() {
         return id;
