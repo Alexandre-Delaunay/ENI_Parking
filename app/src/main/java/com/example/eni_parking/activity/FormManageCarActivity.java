@@ -6,8 +6,6 @@ import android.widget.TextView;
 
 import com.example.eni_parking.R;
 import com.example.eni_parking.bo.Car;
-import com.example.eni_parking.dao.CarDao;
-import com.example.eni_parking.database.AndroidVoitureDatabase;
 
 public class FormManageCarActivity extends AppCompatActivity {
 
@@ -25,7 +23,7 @@ public class FormManageCarActivity extends AppCompatActivity {
 
         int car_id = getIntent().getIntExtra("CAR_ID", -1);
 
-        AndroidVoitureDatabase db = new AndroidVoitureDatabase();
+        /*AndroidVoitureDatabase db = new AndroidVoitureDatabase();
 
         car = db.carDao().findCarWithId(car_id);
 
@@ -33,7 +31,7 @@ public class FormManageCarActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.description)).setText(article.getDescription());
         ((TextView) findViewById(R.id.price)).setText(String.valueOf(article.getPrice()));
         ((ToggleButton) findViewById(R.id.bought)).setChecked(article.isBought());
-        ((RatingBar) findViewById(R.id.rating)).setRating(article.getRating());
+        ((RatingBar) findViewById(R.id.rating)).setRating(article.getRating());*/
 
     }
 }
