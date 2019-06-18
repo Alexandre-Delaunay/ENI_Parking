@@ -34,5 +34,5 @@ public interface CustomerDao {
     public Customer[] loadAllCustomer();
 
     @Query("SELECT * FROM customer WHERE id = :id")
-    public List<Customer> findManagerWithId(Integer id);
+    public List<Customer> findCustomerWithId(Integer id);
 }
