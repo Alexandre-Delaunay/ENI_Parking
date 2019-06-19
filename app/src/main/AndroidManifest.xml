@@ -4,7 +4,7 @@
     package="com.example.eni_parking">
 
     <application
-        android:name="com.example.eni_parking.CustomApplication"
+        android:name=".CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

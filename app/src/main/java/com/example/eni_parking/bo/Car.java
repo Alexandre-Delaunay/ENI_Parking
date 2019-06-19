@@ -35,6 +35,7 @@ public class Car implements Parcelable {
     )
     private int agency_id;
 
+<<<<<<< HEAD
     @ForeignKey(
             entity = CarType.class,
             parentColumns = "id",
@@ -51,6 +52,15 @@ public class Car implements Parcelable {
         isBooked = in.readInt();
         agency_id = in.readInt();
         carType_id = in.readInt();
+=======
+    public Car(int id, String picture, String registrationNumber, double price, int isBooked, int agency_id) {
+        this.id = id;
+        this.picture = picture;
+        this.registrationNumber = registrationNumber;
+        this.price = price;
+        this.isBooked = isBooked;
+        this.agency_id = agency_id;
+>>>>>>> 11fc0f7f4290f2bf773edc8ebe1834ac2d3c2f04
     }
 
     public int getId() {
