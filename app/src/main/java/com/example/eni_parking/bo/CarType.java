@@ -32,9 +32,6 @@ public class CarType {
 
     @Override
     public String toString() {
-        return "CarType{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                '}';
+        return type;
     }
 }
