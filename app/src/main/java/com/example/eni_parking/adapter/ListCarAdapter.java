@@ -44,6 +44,15 @@ public class ListCarAdapter  extends ArrayAdapter<Car> {
         ((TextView)view.findViewById(R.id.car_price))
                 .setText(String.valueOf(this.getItem(position).getPrice()));
 
+        String isBooked;
+        if(this.getItem(position).getIsBooked() == 1) {
+            isBooked = "Loué";
+        } else {
+            isBooked = "Disponible";
+        }
+        ((TextView)view.findViewById(R.id.car_isBooked))
+                .setText(isBooked);
+
         return view;
     }
 }
