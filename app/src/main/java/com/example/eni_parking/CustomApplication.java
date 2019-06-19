@@ -8,10 +8,10 @@ import com.example.eni_parking.dao.CarDao;
 import com.example.eni_parking.dao.CustomerDao;
 import com.example.eni_parking.dao.ManagerDao;
 import com.example.eni_parking.dao.RentalDao;
-import com.example.eni_parking.database.AndroidVoitureDatabase;
+import com.example.eni_parking.AppDatabase;
 
 public class CustomApplication extends Application {
-    private AndroidVoitureDatabase database;
+    private AppDatabase database;
     private AgencyDao agencyDao;
     private CarDao carDao;
     private CustomerDao customerDao;
@@ -23,7 +23,7 @@ public class CustomApplication extends Application {
         super.onCreate();
 
         database = Room.databaseBuilder(getApplicationContext(),
-                AndroidVoitureDatabase.class, "androvoiture").build();
+                AppDatabase.class, "androvoiture").build();
         agencyDao = database.agencyDao();
         carDao = database.carDao();
         customerDao = database.customerDao();
