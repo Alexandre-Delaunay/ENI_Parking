@@ -4,10 +4,6 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverter;
-import android.arch.persistence.room.TypeConverters;
-
-import java.util.Date;
 
 @Entity(tableName = "rental")
 public class Rental {
@@ -32,10 +28,10 @@ public class Rental {
     private int car_id;
 
     @ColumnInfo(name="date_begin")
-    private String dateBegin;
+    private long dateBegin;
 
     @ColumnInfo(name="date_end")
-    private String dateEnd;
+    private long dateEnd;
 
     @ColumnInfo(name="picture_before")
     private String pictureBefore;
@@ -67,19 +63,19 @@ public class Rental {
         this.car_id = car_id;
     }
 
-    public String getDateBegin() {
+    public long getDateBegin() {
         return dateBegin;
     }
 
-    public void setDateBegin(String dateBegin) {
+    public void setDateBegin(long dateBegin) {
         this.dateBegin = dateBegin;
     }
 
-    public String getDateEnd() {
+    public long getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(String dateEnd) {
+    public void setDateEnd(long dateEnd) {
         this.dateEnd = dateEnd;
     }
 

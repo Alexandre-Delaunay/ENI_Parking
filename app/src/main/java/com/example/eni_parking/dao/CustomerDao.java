@@ -26,7 +26,7 @@ public interface CustomerDao {
     public Customer[] loadAllCustomer();
 
     @Query("SELECT * FROM customer WHERE id = :id")
-    public List<Customer> findCustomerWithId(Integer id);
+    public Customer findCustomerWithId(Integer id);
 
     @Query("SELECT * FROM customer WHERE firstname = :firstname AND lastname = :lastname")
     public Customer findCustomerWithFirstnameLastname(String firstname, String lastname);

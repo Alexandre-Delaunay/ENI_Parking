@@ -46,7 +46,7 @@ public class ListCarAdapter  extends ArrayAdapter<Car> {
 
         String isBooked;
         if(this.getItem(position).getIsBooked() == 1) {
-            isBooked = "Loué";
+            isBooked = "Non disponible";
         } else {
             isBooked = "Disponible";
         }

@@ -15,6 +15,9 @@ public interface RentalDao {
     @Query("SELECT * FROM rental WHERE id = :id")
     public Rental findRentalWithId(int id);
 
+    @Query("SELECT * FROM rental WHERE date_begin < :timestamp AND car_id = :car_id AND date_end = 0")
+    public Rental findRendalWithDate(long timestamp, int car_id);
+
     @Query("SELECT * FROM rental")
     public List<Rental> getAllRental();
 

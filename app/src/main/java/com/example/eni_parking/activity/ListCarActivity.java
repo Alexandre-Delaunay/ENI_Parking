@@ -36,16 +36,6 @@ public class ListCarActivity extends AppCompatActivity {
 
         lstCar = Arrays.asList(AppDatabase.getAppDatabase(context).carDao().loadAllCar());
 
-        /*Car car = new Car();
-        car.setId(1);
-        car.setRegistrationNumber("deux");
-        car.setPicture("trois");
-        car.setAgency_id(4);
-        car.setIsBooked(0);
-        car.setPrice(1.2);
-        car.setCarType_id(1);
-        lstCar.add(car);*/
-
         ListView list = findViewById(R.id.lstcar);
 
         adapter = new ListCarAdapter(this, R.layout.lstcar_item, lstCar);
