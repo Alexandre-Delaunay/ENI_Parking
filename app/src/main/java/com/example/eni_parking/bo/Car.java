@@ -33,6 +33,15 @@ public class Car {
     )
     private int agency_id;
 
+    public Car(int id, String picture, String registrationNumber, double price, int isBooked, int agency_id) {
+        this.id = id;
+        this.picture = picture;
+        this.registrationNumber = registrationNumber;
+        this.price = price;
+        this.isBooked = isBooked;
+        this.agency_id = agency_id;
+    }
+
     public int getId() {
         return id;
     }
