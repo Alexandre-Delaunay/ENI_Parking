@@ -24,6 +24,7 @@ public class FormManageCarActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Button editButton = ((Button) findViewById(R.id.EditButtonCar));
 
         int car_id = getIntent().getIntExtra("CAR_ID", -1);
 
@@ -32,23 +33,32 @@ public class FormManageCarActivity extends AppCompatActivity {
         if(car!=null){
             ((EditText) findViewById(R.id.txtRegistrationNumber)).setText(car.getRegistrationNumber());
             ((EditText) findViewById(R.id.txtPrice)).setText(String.valueOf(car.getPrice()));
-        }
 
-        Button editButton = ((Button) findViewById(R.id.EditButton));
+            editButton.setText("Modifier");
+        }
 
 
         final FormManageCarActivity context = this;
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Add in database
-                Car car = new Car();
+                // Add or Update in database
                 String registrationNumber = ((EditText) findViewById(R.id.txtRegistrationNumber)).getText().toString();
-                car.setRegistrationNumber(registrationNumber);
                 double price = Double.parseDouble(((EditText) findViewById(R.id.txtPrice)).getText().toString());
-                car.setPrice(price);
 
-                AppDatabase.getAppDatabase(context).carDao().insertCar(car);
+                if(car==null){
+                    car = new Car();
+                    car.setRegistrationNumber(registrationNumber);
+                    car.setPrice(price);
+
+                    AppDatabase.getAppDatabase(context).carDao().insertCar(car);
+                }
+                else{
+                    car.setRegistrationNumber(registrationNumber);
+                    car.setPrice(price);
+
+                    AppDatabase.getAppDatabase(context).carDao().updateCar(car);
+                }
 
                 // redirect
                 Intent intent = new Intent(context,ListCarActivity.class);

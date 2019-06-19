@@ -17,16 +17,16 @@ public interface CarTypeDao {
     public void insertCarType(CarType customer);
 
     @Update
-    public void updateCar(CarType customer);
+    public void updateCarType(CarType customer);
 
     @Delete
-    public void deleteCar(CarType customer);
+    public void deleteCarType(CarType customer);
 
     @Query("SELECT * FROM cartypes")
-    public CarType[] loadAllCar();
+    public CarType[] loadAllCarType();
 
     @Query("SELECT * FROM cartypes WHERE id = :id")
-    public List<CarType> findCarWithId(Integer id);
+    public CarType findCarTypeWithId(Integer id);
 
     @Query("SELECT * FROM cartypes WHERE type = :type")
     public CarType findCarTypeByType(String type);
