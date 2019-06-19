@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.eni_parking.MainActivity;
+
 import com.example.eni_parking.R;
 import com.example.eni_parking.adapter.ListCarAdapter;
 import com.example.eni_parking.bo.Car;
