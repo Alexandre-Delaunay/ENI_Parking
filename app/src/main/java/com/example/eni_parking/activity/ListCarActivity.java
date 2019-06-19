@@ -28,12 +28,12 @@ public class ListCarActivity extends AppCompatActivity {
 
         lstCar = new ArrayList<>();
 
-        lstCar.add(new Car(4, "deux", "trois", 4, 0, 1));
-        lstCar.add(new Car(8, "dgreeux", "trgreois", 4, 0, 1));
-        lstCar.add(new Car(9, "deux", "trgreois", 4, 1, 1));
-        lstCar.add(new Car(11, "deux", "troegreis", 4, 1, 1));
-        lstCar.add(new Car(12, "deux", "trgrois", 4, 0, 1));
-        lstCar.add(new Car(14, "degreux", "trois", 4, 0, 1));
+        lstCar.add(new Car(4, "deux", "trois", 4, 0, 1, 2));
+        lstCar.add(new Car(8, "dgreeux", "trgreois", 4, 0, 1,2));
+        lstCar.add(new Car(9, "deux", "trgreois", 4, 1, 1,2));
+        lstCar.add(new Car(11, "deux", "troegreis", 4, 1, 1,2));
+        lstCar.add(new Car(12, "deux", "trgrois", 4, 0, 1,2));
+        lstCar.add(new Car(14, "degreux", "trois", 4, 0, 1,2));
 
         final ListView list = findViewById(R.id.lstcar);
         adapter = new ListCarAdapter(this, R.layout.lstcar_item, lstCar);
