@@ -11,20 +11,23 @@ import com.example.eni_parking.bo.CarType;
 
 import java.util.List;
 
-//@Dao
+@Dao
 public interface CarTypeDao {
-    //@Insert(onConflict= OnConflictStrategy.REPLACE)
+    @Insert(onConflict= OnConflictStrategy.REPLACE)
     public void insertCarType(CarType customer);
 
-    //@Update
+    @Update
     public void updateCar(CarType customer);
 
-    //@Delete
+    @Delete
     public void deleteCar(CarType customer);
 
-    //@Query("SELECT * FROM CarTypes")
+    @Query("SELECT * FROM cartypes")
     public CarType[] loadAllCar();
 
-    //@Query("SELECT * FROM cars WHERE id = :id")
+    @Query("SELECT * FROM cartypes WHERE id = :id")
     public List<CarType> findCarWithId(Integer id);
+
+    @Query("SELECT * FROM cartypes WHERE type = :type")
+    public CarType findCarTypeByType(String type);
 }

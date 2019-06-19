@@ -4,10 +4,12 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 
 @Entity(tableName = "Cars")
-public class Car {
+public class Car implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -32,6 +34,24 @@ public class Car {
             childColumns = "agency_id"
     )
     private int agency_id;
+
+    @ForeignKey(
+            entity = CarType.class,
+            parentColumns = "id",
+            deferred = false,
+            childColumns = "carType_id"
+    )
+    private int carType_id;
+
+    protected Car(Parcel in) {
+        id = in.readInt();
+        picture = in.readString();
+        registrationNumber = in.readString();
+        price = in.readDouble();
+        isBooked = in.readInt();
+        agency_id = in.readInt();
+        carType_id = in.readInt();
+    }
 
     public int getId() {
         return id;
@@ -92,4 +112,33 @@ public class Car {
                 ", agency_id=" + agency_id +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(picture);
+        parcel.writeString(registrationNumber);
+        parcel.writeDouble(price);
+        parcel.writeInt(isBooked);
+        parcel.writeInt(agency_id);
+        parcel.writeInt(carType_id);
+    }
+
+    public static final Creator<Car> CREATOR = new Creator<Car>() {
+        @Override
+        public Car createFromParcel(Parcel in) {
+            return new Car(in);
+        }
+
+        @Override
+        public Car[] newArray(int size) {
+            return new Car[size];
+        }
+    };
 }

@@ -27,5 +27,8 @@ public interface CarDao {
     public Car[] loadAllCar();
 
     @Query("SELECT * FROM cars WHERE id = :id")
-    public List<Car> findCarWithId(Integer id);
+    public Car findCarWithId(Integer id);
+
+    @Query("SELECT * FROM cars WHERE carType_id = :idCarType")
+    public List<Car> findCarByCarType(Integer idCarType);
 }
