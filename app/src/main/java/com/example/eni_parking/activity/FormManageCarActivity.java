@@ -1,6 +1,11 @@
 package com.example.eni_parking.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.eni_parking.AppDatabase;
@@ -15,9 +21,24 @@ import com.example.eni_parking.R;
 import com.example.eni_parking.bo.Car;
 import com.example.eni_parking.bo.CarType;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FormManageCarActivity extends AppCompatActivity {
 
     private Car car;
+
+    private static final int CAMERA_REQUEST = 123;
+    private ImageView mImageView;
+
+    // The filepath for the photo
+    String mCurrentPhotoPath;
+
+    // Where the captured image is stored
+    private Uri mImageUri = Uri.EMPTY;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +51,45 @@ public class FormManageCarActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, AppDatabase.getAppDatabase(this).carTypeDao().loadAllCarType());
 
         dropdownCarType.setAdapter(spinnerArrayAdapter);
+
+        Button button = findViewById(R.id.addPicButton);
+        mImageView = findViewById(R.id.PictureDefault);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            }
+        });
+    }
+
+    private File createImageFile() throws IOException {
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  // filename
+                ".jpg",         // extension
+                storageDir      // folder
+        );
+
+        // Save for use with ACTION_VIEW Intent
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Bitmap photo = (Bitmap) data.getExtras().get("data");
+        mImageView.setImageBitmap(photo);
+        mImageView.setImageURI(Uri.parse(mImageUri.toString()));
     }
 
     @Override
@@ -79,7 +139,6 @@ public class FormManageCarActivity extends AppCompatActivity {
                 // redirect
                 Intent intent = new Intent(context,ListCarActivity.class);
                 context.startActivityForResult(intent,2);
-                context.finish();
             }
         });
     }
