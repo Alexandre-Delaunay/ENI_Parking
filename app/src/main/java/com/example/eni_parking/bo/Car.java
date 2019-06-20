@@ -4,12 +4,12 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
-import android.os.Parcel;
-import android.os.Parcelable;
+
+import java.io.Serializable;
 
 
 @Entity(tableName = "Cars")
-public class Car implements Parcelable {
+public class Car implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -43,15 +43,6 @@ public class Car implements Parcelable {
             childColumns = "carType_id"
     )
     private int carType_id;
-
-    protected Car(Parcel in) {
-        id = in.readInt();
-        picture = in.readString();
-        registrationNumber = in.readString();
-        price = in.readDouble();
-        isBooked = in.readInt();
-        agency_id = in.readInt();
-    }
 
 
     public Car() {
@@ -124,33 +115,4 @@ public class Car implements Parcelable {
                 ", agency_id=" + agency_id +
                 '}';
     }
-
-    @Override
-    public int describeContents() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeString(picture);
-        parcel.writeString(registrationNumber);
-        parcel.writeDouble(price);
-        parcel.writeInt(isBooked);
-        parcel.writeInt(agency_id);
-        parcel.writeInt(carType_id);
-    }
-
-    public static final Creator<Car> CREATOR = new Creator<Car>() {
-        @Override
-        public Car createFromParcel(Parcel in) {
-            return new Car(in);
-        }
-
-        @Override
-        public Car[] newArray(int size) {
-            return new Car[size];
-        }
-    };
 }

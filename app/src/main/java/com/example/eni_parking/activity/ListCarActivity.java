@@ -34,7 +34,14 @@ public class ListCarActivity extends AppCompatActivity {
 
         lstCar = new ArrayList<>();
 
-        lstCar = Arrays.asList(AppDatabase.getAppDatabase(context).carDao().loadAllCar());
+        Intent intent = getIntent();
+        if(intent != null){
+            lstCar = (List<Car>) intent.getSerializableExtra("listCarFromSearch");
+        }
+
+        if(lstCar == null || lstCar.isEmpty()){
+            lstCar = Arrays.asList(AppDatabase.getAppDatabase(context).carDao().loadAllCar());
+        }
 
         ListView list = findViewById(R.id.lstcar);
 
