@@ -26,5 +26,8 @@ public interface ManagerDao {
     public Manager[] loadAllManager();
 
     @Query("SELECT * FROM manager WHERE id = :id")
-    public List<Manager> findManagerWithId(Integer id);
+    public Manager findManagerWithId(Integer id);
+
+    @Query("SELECT * FROM manager WHERE mail = :mail AND password = :password AND agencyID = :agencyID")
+    public Manager findByMailAndPass(String mail, String password, int agencyID);
 }

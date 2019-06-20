@@ -79,6 +79,7 @@ public class FormManageCarActivity extends AppCompatActivity {
                 // redirect
                 Intent intent = new Intent(context,ListCarActivity.class);
                 context.startActivityForResult(intent,2);
+                context.finish();
             }
         });
     }

@@ -3,12 +3,13 @@ package com.example.eni_parking;
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
+import com.example.eni_parking.bo.Agency;
+import com.example.eni_parking.bo.Manager;
 import com.example.eni_parking.dao.AgencyDao;
 import com.example.eni_parking.dao.CarDao;
 import com.example.eni_parking.dao.CustomerDao;
 import com.example.eni_parking.dao.ManagerDao;
 import com.example.eni_parking.dao.RentalDao;
-import com.example.eni_parking.AppDatabase;
 
 public class CustomApplication extends Application {
     private AppDatabase database;
@@ -24,6 +25,7 @@ public class CustomApplication extends Application {
 
         database = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "androvoiture").build();
+
         agencyDao = database.agencyDao();
         carDao = database.carDao();
         customerDao = database.customerDao();

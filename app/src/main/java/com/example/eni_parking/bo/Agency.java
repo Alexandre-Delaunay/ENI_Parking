@@ -53,11 +53,6 @@ public class Agency {
 
     @Override
     public String toString() {
-        return "Agency{" +
-                "_id=" + id +
-                ", _name='" + name + '\'' +
-                ", _phone='" + phone + '\'' +
-                ", _address='" + address + '\'' +
-                '}';
+        return name;
     }
 }
