@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ENI_Parking</string>
+<<<<<<< HEAD
     <string name="edit_message">Search</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_login">Sign in</string>
@@ -15,4 +16,9 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+=======
+    <string name="edit_message">Filtre de recherche</string>
+    <string name="type">Type:</string>
+    <string name="rechercher">Rechercher</string>
+>>>>>>> 1b73545efb1f062e0ac3c3306ee185c495eca72e
 </resources>
