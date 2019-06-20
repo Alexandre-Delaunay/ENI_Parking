@@ -1,5 +1,7 @@
 package com.example.eni_parking.activity;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -21,8 +23,12 @@ import com.example.eni_parking.R;
 import com.example.eni_parking.bo.Car;
 import com.example.eni_parking.bo.CarType;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -59,11 +65,38 @@ public class FormManageCarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+        String currentMillisse = String.valueOf(System.currentTimeMillis());
+
+        File destination = new File(Environment.getExternalStorageDirectory(),
+                currentMillisse + ".jpg");
+        mCurrentPhotoPath = destination.getParent() + "/" + currentMillisse + ".jpg";
+
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mImageView.setImageBitmap(thumbnail);
+    }
+
 
     private File createImageFile() throws IOException {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -84,13 +117,6 @@ public class FormManageCarActivity extends AppCompatActivity {
         return image;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        Bitmap photo = (Bitmap) data.getExtras().get("data");
-        mImageView.setImageBitmap(photo);
-        mImageView.setImageURI(Uri.parse(mImageUri.toString()));
-    }
 
     @Override
     protected void onStart() {
@@ -125,6 +151,7 @@ public class FormManageCarActivity extends AppCompatActivity {
                     car.setRegistrationNumber(registrationNumber);
                     car.setPrice(price);
                     car.setCarType_id(carType.getId());
+                    car.setPicture(mCurrentPhotoPath);
 
                     AppDatabase.getAppDatabase(context).carDao().insertCar(car);
                 }
@@ -132,6 +159,7 @@ public class FormManageCarActivity extends AppCompatActivity {
                     car.setRegistrationNumber(registrationNumber);
                     car.setPrice(price);
                     car.setCarType_id(carType.getId());
+                    car.setPicture(mCurrentPhotoPath);
 
                     AppDatabase.getAppDatabase(context).carDao().updateCar(car);
                 }
@@ -142,4 +170,5 @@ public class FormManageCarActivity extends AppCompatActivity {
             }
         });
     }
+
 }
