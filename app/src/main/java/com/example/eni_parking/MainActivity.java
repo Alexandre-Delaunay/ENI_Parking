@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.eni_parking.activity.HomeActivity;
 import com.example.eni_parking.bo.Agency;
+import com.example.eni_parking.bo.CarType;
 import com.example.eni_parking.bo.Manager;
 
 public class MainActivity extends AppCompatActivity {
@@ -97,14 +98,36 @@ public class MainActivity extends AppCompatActivity {
         manager1.setFirstname("Jean");
         manager1.setLastname("René");
         manager1.setMail("manager1@gmail.com");
-        manager1.setPassword("Manager1");
+        manager1.setPassword("123");
         AppDatabase.getAppDatabase(this).managerDao().insertManager(manager1);
         Manager manager2 = new Manager();
         manager2.setAgencyID(2);
         manager2.setFirstname("Pierre");
         manager2.setLastname("Marie");
         manager2.setMail("manager2@gmail.com");
-        manager2.setPassword("Manager2");
+        manager2.setPassword("123");
         AppDatabase.getAppDatabase(this).managerDao().insertManager(manager2);
+
+        CarType carType1 = new CarType();
+        carType1.setType("Break");
+        AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType1);
+        CarType carType2 = new CarType();
+        carType2.setType("Berlines");
+        AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType2);
+        CarType carType3 = new CarType();
+        carType3.setType("Citadine");
+        AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType3);
+        CarType carType4 = new CarType();
+        carType4.setType("Monospace");
+        AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType4);
+        CarType carType5 = new CarType();
+        carType5.setType("4x4");
+        AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType5);
+        CarType carType6 = new CarType();
+        carType6.setType("Crossover");
+        AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType6);
+        CarType carType7 = new CarType();
+        carType7.setType("Utilitaires");
+        AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType7);
     }
 }
