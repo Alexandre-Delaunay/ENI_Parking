@@ -1,10 +1,10 @@
 package com.example.eni_parking;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -57,12 +57,27 @@ public class MainActivity extends AppCompatActivity {
                     else{
                         // IF VALID
                         Intent intent = new Intent(context, HomeActivity.class);
-                        context.startActivityForResult(intent,2);
+                        intent.putExtra("AgencyID", agency.getId());
+                        intent.putExtra("UserID", user.getId());
+                        context.startActivityForResult(intent,1);
                         context.finish();
                     }
                 }
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("ENI_PARKING_USER", MODE_PRIVATE);
+        int UserID = Integer.parseInt(sharedPreferences.getString("UserID", "-1"));
+
+        if(UserID > 0){
+            Intent intent = new Intent(this, HomeActivity.class);
+            this.startActivityForResult(intent,2);
+            this.finish();
+        }
     }
 
     private void createData(){

@@ -19,8 +19,6 @@ import android.widget.TextView;
 import com.example.eni_parking.R;
 import com.example.eni_parking.bo.Car;
 
-import java.io.File;
-import java.io.InputStream;
 import java.util.List;
 
 public class ListCarAdapter  extends ArrayAdapter<Car> {
@@ -47,6 +45,8 @@ public class ListCarAdapter  extends ArrayAdapter<Car> {
 
         ((TextView)view.findViewById(R.id.car_id))
                 .setText(String.valueOf(this.getItem(position).getId()));
+        ((TextView)view.findViewById(R.id.car_registrationNumber))
+                .setText(String.valueOf(this.getItem(position).getRegistrationNumber()));
         ((TextView)view.findViewById(R.id.car_price))
                 .setText(String.valueOf(this.getItem(position).getPrice()));
 
