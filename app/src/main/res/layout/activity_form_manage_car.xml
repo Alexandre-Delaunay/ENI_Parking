@@ -7,7 +7,7 @@
     tools:context=".activity.FormManageCarActivity">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/titleAddCar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -91,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/titleAddCar"
         app:srcCompat="@color/cardview_shadow_end_color" />
 
     <Spinner

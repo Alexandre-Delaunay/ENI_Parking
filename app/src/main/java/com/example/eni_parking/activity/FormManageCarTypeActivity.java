@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.eni_parking.AppDatabase;
 import com.example.eni_parking.MainActivity;
@@ -44,22 +45,25 @@ public class FormManageCarTypeActivity extends AppCompatActivity {
                 // Add or Update in database
                 String type = ((EditText) findViewById(R.id.txtType)).getText().toString();
 
-                if(carType==null){
-                    carType = new CarType();
-                    carType.setType(type);
-
-                    AppDatabase.getAppDatabase(context).carTypeDao().insertCarType(carType);
+                if(type.length() == 0){
+                    Toast.makeText(context,"Veuillez saisir tous les champs", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    carType.setType(type);
+                    if(carType==null){
+                        carType = new CarType();
+                        carType.setType(type);
 
-                    AppDatabase.getAppDatabase(context).carTypeDao().updateCarType(carType);
+                        AppDatabase.getAppDatabase(context).carTypeDao().insertCarType(carType);
+                    }
+                    else{
+                        carType.setType(type);
+
+                        AppDatabase.getAppDatabase(context).carTypeDao().updateCarType(carType);
+                    }
+
+                    // redirect
+                    context.finish();
                 }
-
-                // redirect
-                //Intent intent = new Intent(context, MainActivity.class);
-                //context.startActivityForResult(intent,2);
-                context.finish();
             }
         });
     }

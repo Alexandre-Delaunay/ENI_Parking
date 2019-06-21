@@ -1,6 +1,7 @@
 package com.example.eni_parking.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,11 +24,15 @@ public class SearchActivity extends AppCompatActivity {
     private Button button;
     private Spinner spinner;
     private List<Car> lstCar;
+    private int agencyID = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("ENI_PARKING_USER", MODE_PRIVATE);
+        agencyID = Integer.parseInt(sharedPreferences.getString("AgencyID", "-1"));
 
         db = AppDatabase.getAppDatabase(this);
 
@@ -53,7 +58,7 @@ public class SearchActivity extends AppCompatActivity {
 
         CarType carType = (CarType)spinner.getSelectedItem();
 
-        lstCar.addAll(db.carDao().findCarByCarType(carType.getId()));
+        lstCar.addAll(db.carDao().findCarByCarTypeAndAgency(carType.getId(), agencyID));
 
         if(lstCar != null && !lstCar.isEmpty()){
             Intent intent = new Intent(getApplicationContext(),ListCarActivity.class);

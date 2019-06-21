@@ -2,6 +2,7 @@ package com.example.eni_parking.activity;
 
 import android.app.LauncherActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,11 +25,15 @@ public class ListCarActivity extends AppCompatActivity {
 
     List<Car> lstCar;
     ListCarAdapter adapter;
+    private int agencyID = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.car_list);
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("ENI_PARKING_USER", MODE_PRIVATE);
+        agencyID = Integer.parseInt(sharedPreferences.getString("AgencyID", "-1"));
 
         final ListCarActivity context = this;
 
@@ -40,7 +45,7 @@ public class ListCarActivity extends AppCompatActivity {
         }
 
         if(lstCar == null || lstCar.isEmpty()){
-            lstCar = Arrays.asList(AppDatabase.getAppDatabase(context).carDao().loadAllCar());
+            lstCar = Arrays.asList(AppDatabase.getAppDatabase(context).carDao().findCarByAgency(agencyID));
         }
 
         ListView list = findViewById(R.id.lstcar);

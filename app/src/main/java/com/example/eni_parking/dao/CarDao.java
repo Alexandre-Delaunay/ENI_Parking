@@ -31,4 +31,10 @@ public interface CarDao {
 
     @Query("SELECT * FROM cars WHERE carType_id = :idCarType")
     public List<Car> findCarByCarType(Integer idCarType);
+
+    @Query("SELECT * FROM cars WHERE carType_id = :idCarType AND agency_id = :agency_id")
+    public List<Car> findCarByCarTypeAndAgency(Integer idCarType, Integer agency_id);
+
+    @Query("SELECT * FROM cars WHERE agency_id = :agency_id")
+    public Car[] findCarByAgency(Integer agency_id);
 }

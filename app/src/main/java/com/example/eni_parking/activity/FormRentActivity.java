@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.eni_parking.AppDatabase;
 import com.example.eni_parking.R;
@@ -54,40 +55,46 @@ public class FormRentActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(context.rental!=null){
-                    // Update rental
-                    context.rental.setDateEnd(timeStampToday);
-                    AppDatabase.getAppDatabase(context).rentalDao().update(context.rental);
+                String customer_firstname = ((EditText) findViewById(R.id.firstname)).getText().toString();
+                String customer_lastname = ((EditText) findViewById(R.id.lastname)).getText().toString();
 
-                    Car car = AppDatabase.getAppDatabase(context).carDao().findCarWithId(car_id);
-                    car.setIsBooked(0);
-                    AppDatabase.getAppDatabase(context).carDao().updateCar(car);
+                if(customer_firstname.length() == 0 || customer_lastname.length() == 0){
+                    Toast.makeText(context,"Veuillez saisir tous les champs", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    String customer_firstname = ((EditText) findViewById(R.id.firstname)).getText().toString();
-                    String customer_lastname = ((EditText) findViewById(R.id.lastname)).getText().toString();
-                    Customer customer = AppDatabase.getAppDatabase(context).customerDao().findCustomerWithFirstnameLastname(customer_firstname, customer_lastname);
+                    if(context.rental!=null){
+                        // Update rental
+                        context.rental.setDateEnd(timeStampToday);
+                        AppDatabase.getAppDatabase(context).rentalDao().update(context.rental);
 
-                    if(customer==null) {
-                        customer = new Customer();
-                        customer.setLastname(customer_lastname);
-                        customer.setFirstname(customer_firstname);
-
-                        AppDatabase.getAppDatabase(context).customerDao().insertCustomer(customer);
+                        Car car = AppDatabase.getAppDatabase(context).carDao().findCarWithId(car_id);
+                        car.setIsBooked(0);
+                        AppDatabase.getAppDatabase(context).carDao().updateCar(car);
                     }
-                    customer = AppDatabase.getAppDatabase(context).customerDao().findCustomerWithFirstnameLastname(customer_firstname, customer_lastname);
-                    // Create rental
-                    context.rental = new Rental();
-                    context.rental.setCar_id(car_id);
-                    context.rental.setCustomer_id(customer.getId());
-                    context.rental.setDateBegin(timeStampToday);
-                    AppDatabase.getAppDatabase(context).rentalDao().insert(context.rental);
+                    else{
+                        Customer customer = AppDatabase.getAppDatabase(context).customerDao().findCustomerWithFirstnameLastname(customer_firstname, customer_lastname);
 
-                    Car car = AppDatabase.getAppDatabase(context).carDao().findCarWithId(car_id);
-                    car.setIsBooked(1);
-                    AppDatabase.getAppDatabase(context).carDao().updateCar(car);
+                        if(customer==null) {
+                            customer = new Customer();
+                            customer.setLastname(customer_lastname);
+                            customer.setFirstname(customer_firstname);
+
+                            AppDatabase.getAppDatabase(context).customerDao().insertCustomer(customer);
+                        }
+                        customer = AppDatabase.getAppDatabase(context).customerDao().findCustomerWithFirstnameLastname(customer_firstname, customer_lastname);
+                        // Create rental
+                        context.rental = new Rental();
+                        context.rental.setCar_id(car_id);
+                        context.rental.setCustomer_id(customer.getId());
+                        context.rental.setDateBegin(timeStampToday);
+                        AppDatabase.getAppDatabase(context).rentalDao().insert(context.rental);
+
+                        Car car = AppDatabase.getAppDatabase(context).carDao().findCarWithId(car_id);
+                        car.setIsBooked(1);
+                        AppDatabase.getAppDatabase(context).carDao().updateCar(car);
+                    }
+                    context.finish();
                 }
-                context.finish();
             }
         });
     }

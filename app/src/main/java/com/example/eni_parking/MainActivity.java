@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 Agency agency = (Agency)dropdownAgency.getSelectedItem();
 
                 if (TextUtils.isEmpty(login) || TextUtils.isEmpty(password)){
-                    Toast.makeText(context,"Veuillez renseigner tout les champs", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"Veuillez renseigner tous les champs", Toast.LENGTH_LONG).show();
                 }
                 else{
                     Manager user = AppDatabase.getAppDatabase(context).managerDao().findByMailAndPass(login, password, agency.getId());
