@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         )
         {
             ActivityCompat.requestPermissions(this, PERMISSIONS, 1);
-            finish();
         }
         setContentView(R.layout.activity_main);
 
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         carType1.setType("Break");
         AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType1);
         CarType carType2 = new CarType();
-        carType2.setType("Berlines");
+        carType2.setType("Berline");
         AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType2);
         CarType carType3 = new CarType();
         carType3.setType("Citadine");
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         carType6.setType("Crossover");
         AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType6);
         CarType carType7 = new CarType();
-        carType7.setType("Utilitaires");
+        carType7.setType("Utilitaire");
         AppDatabase.getAppDatabase(this).carTypeDao().insertCarType(carType7);
     }
 }
